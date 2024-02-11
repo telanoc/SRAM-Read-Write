@@ -159,9 +159,8 @@ void loop()
     // Now verify those bytes.  Step 4 at a time because the PRNG
     // gives us 4 bytes and we cycle those inside this loop
     seed.q.a = save_seed;
-    for (address = 0; address < 0x8000; address += 4)
-    {
-      int byte_count = 0;   // good bytes counter
+    int byte_count = 0;   // good bytes counter
+    for (address = 0; address < 0x8000; address += 4) {
       xorshift32 (&seed);   // get next PRNG value
       for (int i = 0; i < 4; i++) {
         uint8_t got = read_data(address + i);  // Find out what's in RAM's pocketses
